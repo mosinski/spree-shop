@@ -17,3 +17,6 @@
 
 # Ignore all RubyMine files
 /.idea/*
+
+# Ignore schema.rb
+/db/schema.rb
