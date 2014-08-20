@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/cart' => 'store#cart'
+  get '/checkout' => 'store#checkout'
   root to: "pages#home"
   mount Spree::Core::Engine, :at => '/'
 
