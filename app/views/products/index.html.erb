@@ -22,10 +22,7 @@
                   <div class="product-overlay">
                     <div class="overlay-content">
                       <h2><%= product.display_price %></h2>
-                      <p><%= product.name %></p>
-                      <%= link_to product, class: 'btn btn-default add-to-cart' do %>
-                        <i class="fa fa-open-eye"></i> See Product
-                      <% end %>
+                      <p><%= link_to product.name, product %></p>
                       <%= link_to put_to_cart_path(product.id), class: 'btn btn-default add-to-cart' do %>
                         <i class="fa fa-shopping-cart"></i>Add to cart
                       <% end %>
