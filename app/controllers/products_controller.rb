@@ -4,5 +4,6 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Spree::Product.friendly.find(params[:id])
   end
 end

@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   end
 
   get '/error' => "pages#error"
+  get '/contact' => "pages#contact"
 end
