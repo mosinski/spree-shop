@@ -55,7 +55,9 @@
               </td>
 
               <td class="cart_delete">
-                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                <%= link_to "/api/orders/#{@order.number}/line_items/#{line_item.id}", method: :delete, class: 'cart_quantity_delete' do %>
+                  <i class="fa fa-times"></i>
+                <% end %>
               </td>
             </tr>
           <% end %>
