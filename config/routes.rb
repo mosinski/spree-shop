@@ -15,6 +15,5 @@ Rails.application.routes.draw do
     delete '/logout', to: "devise/sessions#destroy"
   end
 
-  get '/error' => "pages#error"
   get '/contact' => "pages#contact"
 end

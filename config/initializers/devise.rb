@@ -1,4 +1,5 @@
 Devise.setup do |config|
+  config.secret_key = '5f48d2956109522f76a02cdf4c34f76e114245126dc18702c72363a34f77926301dc69a88225fe2dccf0ef8075cffe3296a41467b584d5e1811444fbbf6e2faa'
   config.http_authenticatable_on_xhr = false
   config.navigational_formats = ["*/*", :html, :json]
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'

@@ -137,7 +137,7 @@
             <li>Total <span><%= @order.display_total %></span></li>
           </ul>
           <a class="btn btn-default update" href="">Update</a>
-          <a class="btn btn-default check_out" href="">Check Out</a>
+          <%= link_to checkout_path, class: "btn btn-default check_out" do %><i class="fa fa-crosshairs"></i> Checkout<% end %>
         </div>
       </div>
     </div>
