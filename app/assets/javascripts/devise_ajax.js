@@ -1,10 +1,10 @@
-$(document).on("ajax:success", "form#sign_up_user", function(e, data, status, xhr) {
+$(document).on("ajax:success", "form#sign_up_user, form#sign_in_user", function(e, data, status, xhr) {
   if (!data.success) {
-    $("#register_errors").hide();
-    $("#register_errors").html("");
+    $("#devise_errors").hide();
+    $("#devise_errors").html("");
     $.each(data.errors, function( index, error ){
-      $("#register_errors").append("<b>"+error+"</b><br>");
+      $("#devise_errors").append("<b>"+error+"</b><br>");
     });
-    $("#register_errors").show();
+    $("#devise_errors").show();
   }
 });
