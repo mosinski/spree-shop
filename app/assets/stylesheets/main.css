@@ -2520,4 +2520,6 @@ h2.title {
   color: #FE980F;
 }
 
-
+div#register_errors {
+ display: none;
+}

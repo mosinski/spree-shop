@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   mount Spree::Core::Engine, :at => '/'
 
   resources :products
-  devise_for :user
+  devise_for :users, :controllers => {:registrations => "registrations"}
   devise_scope :user do
     get '/login', :to => "devise/sessions#new"
     delete '/logout', :to => "devise/sessions#destroy"
