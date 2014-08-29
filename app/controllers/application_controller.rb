@@ -1,5 +1,22 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  helper_method :categories, :brands
+
+  def categories
+    categories = Spree::Taxon.find_by_name("Categories")
+    if categories
+      return Spree::Taxon.where(parent_id: categories.id) || []
+    else
+      return []
+    end
+  end
+
+  def brands
+    brands = Spree::Taxon.find_by_name("Brands")
+    if brands
+      return Spree::Taxon.where(parent_id: brands.id) || []
+    else
+      return []
+    end
+  end
 end

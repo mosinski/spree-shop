@@ -14,9 +14,7 @@ class OrdersController < ApplicationController
     quantity = 1 unless params[:quantity]
     populator = Spree::OrderPopulator.new(current_order(create_order_if_necessary: true), current_currency)
     if populator.populate(params[:variant_id], quantity, params[:options])
-
-        redirect_to cart_path
-
+      redirect_to cart_path
     else
       flash[:error] = populator.errors.full_messages.join(" ")
       redirect_back_or_default(spree.root_path)
