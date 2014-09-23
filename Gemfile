@@ -14,3 +14,4 @@ gem 'spring', group: :development
 gem 'spree_backend', github: 'spree/spree'
 gem 'devise'
 gem 'font-awesome-rails'
+gem 'will_paginate'

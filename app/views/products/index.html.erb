@@ -7,44 +7,45 @@
       <div class="col-sm-9 padding-right">
         <div class="features_items">
           <h2 class="title text-center">Features Items</h2>
-          <% @products.each do |product| %>
-            <div class="col-sm-4">
-              <div class="product-image-wrapper">
-                <div class="single-products">
-                  <div class="productinfo text-center">
-                    <%= image_tag product.images[0].attachment.url(:product) %>
-                    <h2><%= product.display_price %></h2>
-                    <p><%= product.name %></p>
-                    <%= link_to put_to_cart_path(product.master.id), class: 'btn btn-default add-to-cart' do %>
-                      <i class="fa fa-shopping-cart"></i>Add to cart
-                    <% end %>
-                  </div>
-                  <div class="product-overlay">
-                    <div class="overlay-content">
-                      <h2><%= product.display_price %></h2>
-                      <p><%= link_to product.name, product %></p>
-                      <%= link_to put_to_cart_path(product.master.id), class: 'btn btn-default add-to-cart' do %>
-                        <i class="fa fa-shopping-cart"></i>Add to cart
-                      <% end %>
+          <% @products.each_slice(3) do |products| %>
+            <div class="row">
+              <% products.each do |product| %>
+                <div class="col-sm-4">
+                  <div class="product-image-wrapper">
+                    <div class="single-products">
+                      <div class="productinfo text-center">
+                        <%= image_tag product.images[0].attachment.url(:product) %>
+                        <h2><%= product.display_price %></h2>
+                        <p><%= product.name %></p>
+                        <%= link_to put_to_cart_path(product.master.id), class: 'btn btn-default add-to-cart' do %>
+                          <i class="fa fa-shopping-cart"></i>Add to cart
+                        <% end %>
+                      </div>
+                      <div class="product-overlay">
+                        <div class="overlay-content">
+                          <h2><%= product.display_price %></h2>
+                          <p><%= link_to product.name, product %></p>
+                          <%= link_to put_to_cart_path(product.master.id), class: 'btn btn-default add-to-cart' do %>
+                            <i class="fa fa-shopping-cart"></i>Add to cart
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="choose">
+                      <ul class="nav nav-pills nav-justified">
+                        <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                        <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                      </ul>
                     </div>
                   </div>
                 </div>
-                <div class="choose">
-                  <ul class="nav nav-pills nav-justified">
-                    <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                    <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                  </ul>
-                </div>
-              </div>
+              <% end %>
             </div>
           <% end %>
 
-          <ul class="pagination">
-            <li class="active"><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">&raquo;</a></li>
-          </ul>
+          <div class="products-pager" id="products-pager">
+            <%= will_paginate @products, inner_window: 2, outer_window: 1 %>
+          </div>
         </div>
         <%= render "shared/recomended.html.erb" %>
       </div>
