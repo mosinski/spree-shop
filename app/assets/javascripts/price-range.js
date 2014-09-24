@@ -245,7 +245,7 @@
       if (this.touchCapable) {
         $(document).off({
           touchmove: this.mousemove,
-        touchend: this.mouseup
+          touchend: this.mouseup
         });
       } else {
         $(document).off({
@@ -266,7 +266,8 @@
           value: val
         })
       .data('value', val)
-        .prop('value', val);
+      .prop('value', val);
+      alert("Min: "+val[0]+" Max: "+val[1]);
       return false;
     },
 
