@@ -1,7 +1,6 @@
 var RGBChange = function() { $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')') };
 
 $(document).ready(function(){
-  $('#sl2').slider();
   $(function () {
     $.scrollUp({
       scrollName: 'scrollUp', // Element ID

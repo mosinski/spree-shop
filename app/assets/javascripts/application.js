@@ -11,11 +11,11 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap.min
 //= require jquery.scrollUp.min
-//= require price-range
 //= require jquery.prettyPhoto
 //= require main
 //= require gmaps

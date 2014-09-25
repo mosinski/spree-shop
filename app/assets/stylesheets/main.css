@@ -770,7 +770,7 @@ h2.title:before{
   text-transform: uppercase;
 }
 
-.brands-name .nav-stacked li a:hover{
+.brands-name .nav-stacked li a:hover {
   background-color: #fff;
   color: #696763;
 }
@@ -783,9 +783,27 @@ h2.title:before{
   position: relative;
 }
 
-
-.price-range{
+.price-range {
   margin-top:30px;
+}
+
+.price-range input {
+  display: block;
+  margin: -10px 0px 20px 0px;
+  border:0;
+  color:#f6931f;
+  font-weight:bold;
+  font-size: 16px;
+  width: 100%;
+}
+
+.price-range button {
+  background: none repeat scroll 0% 0% #FE980F;
+  border: medium none;
+  border-radius: 0px;
+  margin: 20px -10px -10px 0px;
+  padding: 7px 17px;
+  color: #fff;
 }
 
 .well {
@@ -2524,5 +2542,5 @@ div#devise_errors {
 form#searchform button {
   margin: -1.5px 0px 0px -32px;
   color: #FE980F;
-  height: 36px;
+  height: 35px;
 }
