@@ -119,7 +119,7 @@
             </div>
             <div class="col-sm-3">
               <div class="search_box pull-right">
-                <%= form_tag request.path, method: 'get', id: "searchform" do %>
+                <%= form_tag products_path, method: 'get', id: "searchform" do %>
                   <div class="input-append">
                     <%= text_field_tag  :search, params[:search], placeholder: 'Search', class: 'search input', id: 's' %>
                     <button type="submit" class="btn"><i class="fa fa-search"></i></button>
