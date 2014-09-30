@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get '/cart', to: 'orders#cart', as: :cart
-  get '/cart/add-product/:variant_id', to: 'orders#put_to_cart', as: :put_to_cart
-  #get '/api/orders/:order_id/line_items/:line_item_id', as: :remove_from_cart
+  get '/cart/add-item/:variant_id', to: 'orders#add_item_cart', as: :add_item_cart
+  post '/cart/add-item', to: 'orders#add_item_cart', as: :add_item_cart_post
+  patch '/cart', to: 'orders#update_cart', as: :update_cart
   get '/cart', to: 'orders#change_quantity', as: :change_quantity_cart
   get '/checkout', to: 'orders#checkout', as: :checkout
 

@@ -1,145 +1,170 @@
-<section id="cart_items">
-  <div class="container">
-    <div class="breadcrumbs">
-      <ol class="breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li class="active">Shopping Cart</li>
-      </ol>
-    </div>
-    <div class="table-responsive cart_info">
-      <table class="table table-condensed">
-        <thead>
-        <tr class="cart_menu">
-          <td class="image">Item</td>
-          <td class="description"></td>
-          <td class="price">Price</td>
-          <td class="quantity">Quantity</td>
-          <td class="total">Total</td>
-          <td></td>
-        </tr>
-        </thead>
-        <tbody>
-          <% @order.line_items.each do |line_item| %>
-            <tr>
-              <td class="cart_product">
-                <a href="">
-                  <%= link_to image_tag(line_item.variant.images.first.attachment.url(:small)), line_item.variant.product %>
-                </a>
+<%= form_for @order, :url => update_cart_path, :html => {:id => 'update-cart'} do |order_form| %>
+  <section id="cart_items">
+    <div class="container">
+      <div class="breadcrumbs">
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li class="active">Shopping Cart</li>
+        </ol>
+      </div>
+      <div class="table-responsive cart_info">
+        <table class="table table-condensed">
+          <thead>
+            <tr class="cart_menu">
+              <td class="image">
+                <%= Spree.t(:item) %>
               </td>
-
-              <td class="cart_description">
-                <h4><%= link_to line_item.name, 'product_path(variant.product)' %></h4>
-                <%= line_item.variant.options_text %>
+              <td class="description"></td>
+              <td class="price">
+                <%= Spree.t(:price) %>
               </td>
-
-              <td class="cart_price">
-                <p><%= line_item.single_money.to_html %></p>
+              <td class="quantity">
+                <%= Spree.t(:qty) %>
               </td>
-
-              <td class="cart_quantity">
-                <% if line_item.insufficient_stock? %>
-                  <span class="out-of-stock">
-                    <%= Spree.t(:out_of_stock) %>&nbsp;&nbsp;<br />
-                  </span>
-                <% else %>
-                  <div class="cart_quantity_button">
-                    <a class="cart_quantity_up" href=""> + </a>
-                    <input class="cart_quantity_input" type="text" name="quantity" value="<%= line_item.quantity %>" autocomplete="off" size="2">
-                    <a class="cart_quantity_down" href=""> - </a>
-                  </div>
-                <% end %>
+              <td class="total">
+                <%= Spree.t(:total) %>
               </td>
-
-              <td class="cart_total">
-                <p class="cart_total_price"><%= line_item.display_amount.to_html unless line_item.quantity.nil? %></p>
-              </td>
-
-              <td class="cart_delete">
-                <%= link_to "/api/orders/#{@order.number}/line_items/#{line_item.id}", method: :delete, class: 'cart_quantity_delete' do %>
-                  <i class="fa fa-times"></i>
-                <% end %>
-              </td>
+              <td></td>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section> <!--/#cart_items-->
+          </thead>
+          <tbody>
+            <% @order.line_items.each do |line_item| %>
+              <% variant = line_item.variant -%>
+              <%= order_form.fields_for :line_items, line_item do |item_form| %>
+                <tr>
+                  <td class="cart_product">
+                    <% if variant.images.length == 0 %>
+                      <%= link_to small_image(variant.product), variant.product %>
+                    <% else %>
+                      <%= link_to image_tag(variant.images.first.attachment.url(:small)), variant.product %>
+                    <% end %>
+                  </td>
 
-<section id="do_action">
-  <div class="container">
-    <div class="heading">
-      <h3>What would you like to do next?</h3>
-      <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="chose_area">
-          <ul class="user_option">
-            <li>
-              <input type="checkbox">
-              <label>Use Coupon Code</label>
-            </li>
-            <li>
-              <input type="checkbox">
-              <label>Use Gift Voucher</label>
-            </li>
-            <li>
-              <input type="checkbox">
-              <label>Estimate Shipping & Taxes</label>
-            </li>
-          </ul>
-          <ul class="user_info">
-            <li class="single_field">
-              <label>Country:</label>
-              <select>
-                <option>United States</option>
-                <option>Bangladesh</option>
-                <option>UK</option>
-                <option>India</option>
-                <option>Pakistan</option>
-                <option>Ucrane</option>
-                <option>Canada</option>
-                <option>Dubai</option>
-              </select>
+                  <td class="cart_description">
+                    <h4><%= link_to line_item.name, product_path(variant.product) %></h4>
+                    <%= variant.options_text %>
+                    <% if line_item.insufficient_stock? %>
+                      <span class="out-of-stock">
+                        <%= Spree.t(:out_of_stock) %>&nbsp;&nbsp;<br />
+                      </span>
+                    <% end %>
+                    <span class="line-item-description" data-hook="line_item_description">
+                      <%= line_item_description_text(line_item.description) %>
+                    </span>
+                  </td>
 
-            </li>
-            <li class="single_field">
-              <label>Region / State:</label>
-              <select>
-                <option>Select</option>
-                <option>Dhaka</option>
-                <option>London</option>
-                <option>Dillih</option>
-                <option>Lahore</option>
-                <option>Alaska</option>
-                <option>Canada</option>
-                <option>Dubai</option>
-              </select>
+                  <td class="cart_price">
+                    <p><%= line_item.single_money.to_html %></p>
+                  </td>
 
-            </li>
-            <li class="single_field zip-field">
-              <label>Zip Code:</label>
-              <input type="text">
-            </li>
-          </ul>
-          <a class="btn btn-default update" href="">Get Quotes</a>
-          <a class="btn btn-default check_out" href="">Continue</a>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="total_area">
-          <ul>
-            <li>Cart Sub Total <span>$59</span></li>
-            <li>Eco Tax <span>$2</span></li>
-            <li>Shipping Cost <span>Free</span></li>
-            <li>Total <span><%= @order.display_total %></span></li>
-          </ul>
-          <a class="btn btn-default update" href="">Update</a>
-          <%= link_to checkout_path, class: "btn btn-default check_out" do %><i class="fa fa-crosshairs"></i> Checkout<% end %>
-        </div>
+                  <td class="cart_quantity">
+                    
+                    <div class="cart_quantity_button">
+                      <a class="cart_quantity_up" href=""> + </a>
+                      <%= item_form.text_field :quantity, :min => 0, :class => "cart_quantity_input", :size => 2 %>
+                      <a class="cart_quantity_down" href=""> - </a>
+                    </div>
+                  </td>
+
+                  <td class="cart_total">
+                    <p class="cart_total_price"><%= line_item.display_amount.to_html unless line_item.quantity.nil? %></p>
+                  </td>
+
+                  <td class="cart_delete">
+                    <%= link_to '#', :class => 'cart_quantity_delete', :id => "delete_#{dom_id(line_item)}" do %>
+                      <i class="fa fa-times"></i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
-</section><!--/#do_action-->
+  </section> <!--/#cart_items-->
+
+  <section id="do_action">
+    <div class="container">
+      <div class="heading">
+        <h3>What would you like to do next?</h3>
+        <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="chose_area">
+            <ul class="user_option">
+              <li>
+                <input type="checkbox">
+                <label>Use Coupon Code</label>
+              </li>
+              <li>
+                <input type="checkbox">
+                <label>Use Gift Voucher</label>
+              </li>
+              <li>
+                <input type="checkbox">
+                <label>Estimate Shipping & Taxes</label>
+              </li>
+            </ul>
+            <ul class="user_info">
+              <li class="single_field">
+                <label>Country:</label>
+                <select>
+                  <option>United States</option>
+                  <option>Bangladesh</option>
+                  <option>UK</option>
+                  <option>India</option>
+                  <option>Pakistan</option>
+                  <option>Ucrane</option>
+                  <option>Canada</option>
+                  <option>Dubai</option>
+                </select>
+
+              </li>
+              <li class="single_field">
+                <label>Region / State:</label>
+                <select>
+                  <option>Select</option>
+                  <option>Dhaka</option>
+                  <option>London</option>
+                  <option>Dillih</option>
+                  <option>Lahore</option>
+                  <option>Alaska</option>
+                  <option>Canada</option>
+                  <option>Dubai</option>
+                </select>
+
+              </li>
+              <li class="single_field zip-field">
+                <label>Zip Code:</label>
+                <input type="text">
+              </li>
+              <li>
+                <%= order_form.text_field :coupon_code, :size => 10, :placeholder => Spree.t(:coupon_code) %>
+              </li>
+            </ul>
+            <a class="btn btn-default update" href="">Get Quotes</a>
+            <a class="btn btn-default check_out" href="">Continue</a>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="total_area">
+            <ul>
+              <li>Cart Sub Total <span><%= @order.display_item_total.to_html %></span></li>
+              <li>Eco Tax <span>$2</span></li>
+              <li>Shipping Cost <span>Free</span></li>
+              <li>Total <span><%= @order.display_total.to_html %></span></li>
+            </ul>
+            <%= button_tag :class => 'btn btn-default update', :id => 'update-button' do %>
+              <%= Spree.t(:update) %>
+            <% end %>
+            <%= button_tag :class => 'btn btn-default check_out', :id => 'checkout-link', :name => 'checkout' do %>
+              <i class="fa fa-crosshairs"></i> <%= Spree.t(:checkout) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!--/#do_action-->
+<% end %>

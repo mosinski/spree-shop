@@ -33,15 +33,18 @@
               <h2><%= @product.name %></h2>
               <p>Web ID: <%= @product.id %></p>
               <%= image_tag("product-details/rating.png") %>
-              <span>
-                <span><%= @product.display_price %></span>
-                <label>Quantity:</label>
-                <input type="text" value="3" />
-                <button type="button" class="btn btn-fefault cart">
-                  <i class="fa fa-shopping-cart"></i>
-                  Add to cart
-                </button>
-              </span>
+              <%= form_for :order, url: add_item_cart_post_path do |f| %>
+                <%= hidden_field_tag "variant_id", @product.master.id %>
+                <span>
+                  <span><%= @product.display_price %></span>
+                  <label>Quantity:</label>
+                  <%= number_field_tag :quantity, 1, :class => 'title', :min => 1 %>
+                  <%= button_tag :class => 'btn btn-fefault cart', :id => 'add-to-cart-button', :type => :submit do %>
+                    <i class="fa fa-shopping-cart"></i>
+                    <%= Spree.t(:add_to_cart) %>
+                  <% end %>
+                </span>
+              <% end %>
               <p><b>Availability:</b> In Stock</p>
               <p><b>Condition:</b> New</p>
               <p><b>Brand:</b> E-SHOPPER</p>

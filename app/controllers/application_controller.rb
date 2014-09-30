@@ -1,4 +1,10 @@
 class ApplicationController < ActionController::Base
+  include Spree::Core::ControllerHelpers::Auth
+  include Spree::Core::ControllerHelpers::Common
+  include Spree::Core::ControllerHelpers::Order
+
+  layout 'application'
+
   protect_from_forgery with: :exception
   helper_method :categories, :brands
 

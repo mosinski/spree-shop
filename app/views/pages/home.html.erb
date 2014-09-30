@@ -80,7 +80,7 @@
                         <%= image_tag product.images[0].attachment.url(:product) %>
                         <h2><%= product.display_price %></h2>
                         <p><%= product.name %></p>
-                        <%= link_to put_to_cart_path(product.master.id), class: 'btn btn-default add-to-cart' do %>
+                        <%= link_to add_item_cart_path(product.master.id), class: 'btn btn-default add-to-cart' do %>
                           <i class="fa fa-shopping-cart"></i>Add to cart
                         <% end %>
                       </div>
@@ -88,7 +88,7 @@
                         <div class="overlay-content">
                           <h2><%= product.display_price %></h2>
                           <p><%= link_to product.name, product %></p>
-                          <%= link_to put_to_cart_path(product.master.id), class: 'btn btn-default add-to-cart' do %>
+                          <%= link_to add_item_cart_path(product.master.id), class: 'btn btn-default add-to-cart' do %>
                             <i class="fa fa-shopping-cart"></i>Add to cart
                           <% end %>
                         </div>
