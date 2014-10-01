@@ -17,15 +17,15 @@ module Spree
     end
 
     def spree_login_path
-      '/user/sign_in'
+      '/users/sign_in'
     end
 
     def spree_signup_path
-      '/user/sign_up'
+      '/users/sign_up'
     end
 
     def spree_logout_path
-      '/user/sign_out'
+      '/users/sign_out'
     end
   end
 end

@@ -5,6 +5,13 @@
         <%= render "shared/sidebar.html.erb" %>
       </div>
       <div class="col-sm-9 padding-right">
+        <div id="bc1" class="btn-group btn-breadcrumb">
+          <a href="/" class="btn btn-default"><i class="fa fa-home"></i></a>
+          <div class="btn btn-default">...</div>
+          <% @product.taxons.each do |taxon| %>
+            <a href="#" class="btn btn-default"><div><%= taxon.name %></div></a>
+          <% end %>
+        </div>
         <div class="product-details">
           <div class="col-sm-5">
             <div class="view-product">

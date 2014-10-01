@@ -11,10 +11,6 @@ Rails.application.routes.draw do
 
   resources :products
   devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions'}
-  devise_scope :user do
-    get '/login', to: "devise/sessions#new"
-    delete '/logout', to: "devise/sessions#destroy"
-  end
 
   get '/contact' => "pages#contact"
 end
