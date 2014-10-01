@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
 
   respond_to :html
   
-  before_filter :assign_order_with_lock, only: :update
+  before_filter :assign_order_with_lock, only: :update_cart
 
   def cart
     @order = current_order || Spree::Order.new
@@ -30,9 +30,8 @@ class OrdersController < ApplicationController
           if params.has_key?(:checkout)
             @order.next if @order.cart?
             redirect_to checkout_state_path(@order.checkout_steps.first)
-          else
-            redirect_to cart_path
           end
+          redirect_to cart_path
         end
       end
     else
@@ -57,7 +56,7 @@ class OrdersController < ApplicationController
 
   def order_params
     if params[:order]
-      #params[:order].permit(*Spree::permitted_order_attributes)
+      params[:order]#.permit(*Spree::permitted_order_attributes)
     else
       {}
     end
