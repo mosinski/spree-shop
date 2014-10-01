@@ -1634,7 +1634,6 @@ h2.title {
   font-size: 18px
 }
 
-
 #cart_items .cart_info .cart_total_price {
   color: #FE980F;
   font-size: 24px;
@@ -1657,7 +1656,6 @@ h2.title {
   float: left;
 }
 
-
 .cart_quantity_input {
   color: #696763;
   float: left;
@@ -1667,13 +1665,15 @@ h2.title {
   
 }
 
+.cart_quantity_up, .cart_quantity_down {
+  cursor: pointer;
+}
 
 .cart_delete  {
   display: block;
   margin-right: -12px;
   overflow: hidden;
 }
-
 
 .cart_delete a {
   background:#F0F0E9;
@@ -1685,7 +1685,6 @@ h2.title {
 .cart_delete a:hover {
   background:#FE980F
 }
-
 
 .bg h2.title {
   margin-right:0;
@@ -1704,7 +1703,6 @@ h2.title {
   font-size: 16px;
   font-weight: 300;
 }
-
 
 #do_action .total_area {
   padding-bottom: 18px !important;
@@ -1728,13 +1726,11 @@ h2.title {
   padding: 7px 20px;
 }
 
-
 .user_option label {
   color: #696763;
   font-weight: normal;
   margin-left: 10px;
 }
-
 
 .user_info {
   display: block;
