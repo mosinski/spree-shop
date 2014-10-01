@@ -34,6 +34,16 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif;
 }
 
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 .btn:hover, 
 .btn:focus{
   outline: none;
@@ -1646,14 +1656,24 @@ h2.title {
 
 .cart_quantity_button a {
   background:#F0F0E9;
-  color: #696763;
+  color: #FFFFFF;
   display: inline-block;
   font-size: 16px;
   height: 28px;
   overflow: hidden;
   text-align: center;
+  padding: 4px 7px;
   width: 35px;
   float: left;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.cart_quantity_button a:hover {
+  background:#FE980F;
 }
 
 .cart_quantity_input {
@@ -1662,14 +1682,10 @@ h2.title {
   font-size: 16px;
   text-align: center;
   font-family: 'Roboto',sans-serif;
-  
+  width: 50px;
 }
 
-.cart_quantity_up, .cart_quantity_down {
-  cursor: pointer;
-}
-
-.cart_delete  {
+.cart_delete {
   display: block;
   margin-right: -12px;
   overflow: hidden;

@@ -59,9 +59,9 @@
 
                   <td class="cart_quantity">
                     <div class="cart_quantity_button">
-                      <a class="cart_quantity_up"> + </a>
-                      <%= item_form.text_field :quantity, :min => 0, :class => "cart_quantity_input", :size => 2 %>
-                      <a class="cart_quantity_down"> - </a>
+                      <a class="cart_quantity_up"><i class="fa fa-plus"></i></a>
+                      <%= item_form.number_field :quantity, :min => 1, :class => "cart_quantity_input", :size => 2 %>
+                      <a class="cart_quantity_down"><i class="fa fa-minus"></i></a>
                     </div>
                   </td>
 
