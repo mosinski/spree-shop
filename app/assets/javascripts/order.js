@@ -1,3 +1,4 @@
+/*
 var product_to_delete = null;
 
 $(document).on("page:change", function() {
@@ -19,3 +20,4 @@ $(document).on("ajax:success", "form#update-cart", function(e, data, status, xhr
     product_to_delete = null
   }
 });
+*/

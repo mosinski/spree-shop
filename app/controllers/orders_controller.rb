@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
 
   respond_to :html
   
-  before_filter :assign_order_with_lock, only: :update_cart
+  before_filter :assign_order_with_lock, only: [ :remove_item_cart, :update_cart ]
 
   def cart
     @order = current_order || Spree::Order.new
@@ -20,6 +20,16 @@ class OrdersController < ApplicationController
     else
       flash[:error] = populator.errors.full_messages.join(" ")
       redirect_back_or_default(spree.root_path)
+    end
+  end
+
+  def remove_item_cart
+    @line_item = @order.line_items.find(params[:variant_id])
+    @order.contents.remove(@line_item.variant, @line_item.quantity, {})
+
+    respond_to do |format|
+      format.html { redirect_to cart_path }
+      format.js
     end
   end
 
