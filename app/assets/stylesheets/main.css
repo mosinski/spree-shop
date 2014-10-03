@@ -2552,7 +2552,6 @@ div#devise_errors {
 }
 
 form#searchform button {
-  margin: -1.5px 0px 0px -32px;
   color: #FE980F;
   height: 35px;
 }

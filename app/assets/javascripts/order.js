@@ -6,6 +6,8 @@ $(document).on("page:change", function() {
     $(this).next("input.cart_quantity_input").trigger('change').get(0).value++;
   });
   $("a.cart_quantity_down").click(function() {
-    $(this).prev("input.cart_quantity_input").trigger('change').get(0).value--;
+    if($(this).prev("input.cart_quantity_input").val() > 1) {
+      $(this).prev("input.cart_quantity_input").trigger('change').get(0).value--;
+    }
   });
 });

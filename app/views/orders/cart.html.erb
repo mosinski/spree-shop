@@ -1,4 +1,4 @@
-<%= form_for @order, :url => update_cart_path, :html => {:id => 'update-cart'} do |order_form| %>
+<%= form_for @order, url: update_cart_path, html: {id: 'update-cart'} do |order_form| %>
   <section id="cart_items">
     <div class="container">
       <div class="breadcrumbs">
@@ -60,7 +60,7 @@
                   <td class="cart_quantity">
                     <div class="cart_quantity_button">
                       <a class="cart_quantity_up"><i class="fa fa-plus"></i></a>
-                      <%= item_form.number_field :quantity, :min => 1, :class => "cart_quantity_input", :size => 2 %>
+                      <%= item_form.number_field :quantity, min: 1, class: "cart_quantity_input", size: 2 %>
                       <a class="cart_quantity_down"><i class="fa fa-minus"></i></a>
                     </div>
                   </td>
@@ -70,7 +70,7 @@
                   </td>
 
                   <td class="cart_delete">
-                    <%= link_to remove_item_cart_path(line_item.id), :class => 'cart_quantity_delete delete', remote: true do %>
+                    <%= link_to remove_item_cart_path(line_item.id), class: 'cart_quantity_delete delete', data: {confirm: "Are you sure?"}, remote: true do %>
                       <i class="fa fa-times"></i>
                     <% end %>
                   </td>
@@ -138,7 +138,7 @@
                 <input type="text">
               </li>
               <li>
-                <%= order_form.text_field :coupon_code, :size => 10, :placeholder => Spree.t(:coupon_code) %>
+                <%= order_form.text_field :coupon_code, size: 10, placeholder: Spree.t(:coupon_code) %>
               </li>
             </ul>
             <a class="btn btn-default update" href="">Get Quotes</a>
@@ -153,10 +153,10 @@
               <li>Shipping Cost <span>Free</span></li>
               <li>Total <span><%= @order.display_total.to_html %></span></li>
             </ul>
-            <%= button_tag :class => 'btn btn-default update', :id => 'update-button' do %>
+            <%= button_tag class: 'btn btn-default update', id: 'update-button' do %>
               <%= Spree.t(:update) %>
             <% end %>
-            <%= button_tag :class => 'btn btn-default check_out', :id => 'checkout-link', :name => 'checkout' do %>
+            <%= button_tag class: 'btn btn-default check_out', id: 'checkout-link', name: 'checkout' do %>
               <i class="fa fa-crosshairs"></i> <%= Spree.t(:checkout) %>
             <% end %>
           </div>
