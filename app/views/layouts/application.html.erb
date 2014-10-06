@@ -121,7 +121,7 @@
               <div class="search_box pull-right">
                 <%= form_tag products_path, method: 'get', id: "searchform" do %>
                   <div class="input-group">
-                    <%= text_field_tag  :search, params[:search], placeholder: 'Search', class: 'search input', id: 's' %>
+                    <%= text_field_tag  :search, params[:search], placeholder: 'Search', class: 'search input pull-right', id: 's' %>
                     <span class="input-group-btn">
                       <button type="submit" class="btn"><i class="fa fa-search"></i></button>
                     </span>

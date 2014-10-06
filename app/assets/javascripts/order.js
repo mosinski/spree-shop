@@ -1,5 +1,5 @@
 $(document).on("page:change", function() {
-  $("form.edit_order").on('change', 'input', function() {
+  $("form#update-cart").on('change', 'input', function() {
     $("div#notice").html("<div class='alert alert-warning'><strong>Attention!</strong> Unsaved changes. Please click the update button.</div>");
   });
   $("a.cart_quantity_up").click(function() {
