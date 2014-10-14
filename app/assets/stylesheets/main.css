@@ -261,7 +261,7 @@ a#scrollUp i{
 .search_box input {
   background: #F0F0E9;
   border: medium none;
-  color: #B2B2B2;
+  color: #FE980F;
   font-family: 'roboto';
   font-size: 12px;
   font-weight: 300;
@@ -271,14 +271,12 @@ a#scrollUp i{
   width: 155px;
 }
 
-
 /*  Dropdown menu*/
 
 .navbar-header 
 .navbar-toggle .icon-bar {
     background-color: #fff;
 }
-
 
 .nav.navbar-nav > li:hover > ul.sub-menu{
   display: block;
@@ -343,7 +341,6 @@ ul.sub-menu {
     transform: translateY(0);
   }
 }
-  
 /*************************
 *******Footer CSS******
 **************************/
@@ -448,12 +445,12 @@ ul.sub-menu {
   margin-top:0px;
 }
 
-
 .address {
   margin-top: 30px;
   position: relative;
   overflow: hidden;
 }
+
 .address  img {
 	width:100%;
 }
@@ -507,7 +504,6 @@ ul.sub-menu {
 	color:#FE980F;
 }
 
-
 .searchform input {
   border: 1px solid #DDDDDD;
   color: #CCCCC6;
@@ -518,7 +514,6 @@ ul.sub-menu {
   padding: 7px;
   width: 212px;
 }
-
 
 .searchform button {
   background: #FE980F;
@@ -2554,4 +2549,17 @@ div#devise_errors {
 form#searchform button {
   color: #FE980F;
   height: 35px;
+}
+
+.price-range #searchform button {
+  color: #fff;
+}
+
+.price-range #searchform #price-reset {
+  background-color: #FE2E2E;
+}
+
+.price-range #searchform button:hover {
+  color: #FE980F;
+  background-color: #EBEBEB;
 }

@@ -42,7 +42,18 @@
       <div id="slider-range"></div>
       <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
       <br>
-      <button type="button" class="center btn btn-default" onclick="document.getElementById('searchform').submit()">Submit</button>
+      <%= form_tag products_path, method: 'get', id: "searchform" do %>
+        <div class="input-group">
+          <%= hidden_field_tag  :search, params[:search], placeholder: 'Search', class: 'search input pull-right', id: 's' %>
+        </div>
+        <%= hidden_field_tag  :price_min, params[:price_min] %>
+        <%= hidden_field_tag  :price_max, params[:price_max] %>
+        <% if params[:price_min].present? || params[:price_max].present? %>
+          <button type="submit" class="center btn btn-default" id="price-reset">Reset</button>
+        <% else %>
+          <button type="submit" class="center btn btn-default">Submit</button>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
