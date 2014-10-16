@@ -2,7 +2,7 @@ Spree::Product.class_eval do
   include ActionView::Helpers::TagHelper
 
   def self.search(search)
-    order('created_at DESC').where('name LIKE ?', "%#{search}%")
+    order('created_at DESC').where('lower(name) LIKE ?', "%#{search}%".downcase)
   end
 
   def availability

@@ -126,8 +126,8 @@
                       <button type="submit" class="btn"><i class="fa fa-search"></i></button>
                     </span>
                   </div>
-                  <%= hidden_field_tag  :price_min, params[:price_min] %>
-                  <%= hidden_field_tag  :price_max, params[:price_max] %>
+                  <%= hidden_field_tag  :price_min, params[:price_min] || Spree::Price.min %>
+                  <%= hidden_field_tag  :price_max, params[:price_max] || Spree::Price.max  %>
                 <% end %>
               </div>
             </div>

@@ -2559,6 +2559,10 @@ form#searchform button {
   background-color: #FE2E2E;
 }
 
+.price-range #searchform input[type='number'] {
+  display: none;
+}
+
 .price-range #searchform button:hover {
   color: #FE980F;
   background-color: #EBEBEB;

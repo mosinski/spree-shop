@@ -1,9 +1,9 @@
 var ready = function() {
   $("#slider-range").slider({
     range: true,
-    min: 0,
-    max: 600,
-    values: [ $(".price-range #price_min").val() || 75, $(".price-range #price_max").val() || 400 ],
+    min: parseInt($(".price-range #price_min").attr('min'),10),
+    max: parseInt($(".price-range #price_max").attr('max'),10),
+    values: [$(".price-range #price_min").val(), $(".price-range #price_max").val()],
     slide: function( event, ui ) {
       $("#amount").val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
       $(".price-range #price_min").val( ui.values[ 0 ] );
@@ -11,7 +11,8 @@ var ready = function() {
     }
   });
   $("#price-reset").click(function() {
-    $(".price-range #price_min, .price-range #price_max").val('');
+    $(".price-range #price_min").val($(".price-range #price_min").attr('min'));
+    $(".price-range #price_max").val($(".price-range #price_max").attr('max'));
   });
 };
 
