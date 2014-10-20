@@ -52,6 +52,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .navbar-toggle {
   background-color: #000;
+  margin-top: -80px;
 }
 
 a#scrollUp {
@@ -245,17 +246,22 @@ a#scrollUp i{
 }
 
 .mainmenu ul li a {
-	color: #696763;
-	font-family: 'Roboto', sans-serif;
-	font-size: 17px;
-	font-weight: 300;
-	padding: 0;
-	padding-bottom: 10px;
+  color: #696763;
+  font-family: 'Roboto', sans-serif;
+  font-size: 17px;
+  font-weight: 300;
+  padding: 0;
+  padding-bottom: 10px;
 }
 
 .mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active{
-	background:none;
-	color:#fdb45e;
+  background:none;
+  color:#fdb45e;
+}
+
+.search_box {
+  margin-top: -5px;
+  width: 100%;
 }
 
 .search_box input {
@@ -268,7 +274,7 @@ a#scrollUp i{
   height: 35px;
   outline: medium none;
   padding-left: 10px;
-  width: 155px;
+  width: 100%;
 }
 
 /*  Dropdown menu*/
