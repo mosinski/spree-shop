@@ -121,7 +121,7 @@
               <div class="search_box pull-right">
                 <%= form_tag products_path, method: 'get', id: "searchform" do %>
                   <div class="input-group">
-                    <%= text_field_tag  :search, params[:search], placeholder: 'Search', class: 'search input pull-right', id: 's' %>
+                    <%= text_field_tag  :search, params[:search], placeholder: 'Search...', class: 'search input pull-right', id: 's' %>
                     <span class="input-group-btn">
                       <button type="submit" class="btn"><i class="fa fa-search"></i></button>
                     </span>
@@ -134,6 +134,31 @@
           </div>
         </div>
       </div>
+      <nav class="navbar navbar-default" id="nav"  role="navigation">
+        <div class="container">
+          <div class="row">
+            <div class="navbar-header col-xs-12">
+              <a class="navbar-brand col-sm-2 hidden-xs" href="#">
+                <%= image_tag("home/logo.png") %>
+              </a>
+              <span class="navbar-text col-sm-9">
+                <div class="search_box pull-right">
+                  <%= form_tag products_path, method: 'get', id: "searchform" do %>
+                    <div class="input-group">
+                      <%= text_field_tag  :search, params[:search], placeholder: 'Search...', class: 'search input pull-right', id: 's' %>
+                      <span class="input-group-btn">
+                        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                      </span>
+                    </div>
+                    <%= hidden_field_tag  :price_min, params[:price_min] || Spree::Price.min %>
+                    <%= hidden_field_tag  :price_max, params[:price_max] || Spree::Price.max  %>
+                  <% end %>
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </nav>
     </header>
     <div class="container">
       <div class="row">
