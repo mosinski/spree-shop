@@ -1,9 +1,11 @@
 Spree::Price.class_eval do
   def self.min
-    order("amount ASC").first.amount.ceil || 0
+    min = order("amount ASC").first
+    min.nil? ? 0 : min.amount.ceil
   end
 
   def self.max
-    order("amount DESC").first.amount.ceil || 0
+    max = order("amount DESC").first
+    max.nil? ? 0 : max.amount.ceil
   end
 end
