@@ -1,13 +1,13 @@
 <div class="left-sidebar">
   <h2>Category</h2>
   <div class="panel-group category-products" id="accordian">
-    <% categories.each do |category| %>
+    <% ([@category] || categories).each do |category| %>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordian" href="#<%= category.name.parameterize %>">
               <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-              <%= category.name %>
+              <%= link_to category.name, products_path( category: category.id ) %>
             </a>
           </h4>
         </div>
@@ -15,7 +15,7 @@
           <div class="panel-body">
             <ul>
               <% category.children.each do |child_category| %>
-                <li><%= child_category.name %></li>
+                <li><%= link_to child_category.name, products_path( category: child_category.id ) %></li>
               <% end %>
             </ul>
           </div>
