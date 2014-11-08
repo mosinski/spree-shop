@@ -9,8 +9,7 @@ class ApplicationController < ActionController::Base
   helper_method :categories, :brands
 
   def categories
-    categories = Spree::Taxon.find_by_name("Categories")
-    if categories
+    if categories = Spree::Taxon.find_by_name("Categories")
       return Spree::Taxon.where(parent_id: categories.id) || []
     else
       return []
@@ -18,8 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def brands
-    brands = Spree::Taxon.find_by_name("Brands")
-    if brands
+    if brands = Spree::Taxon.find_by_name("Brands")
       return Spree::Taxon.where(parent_id: brands.id) || []
     else
       return []
