@@ -7,7 +7,7 @@
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordian" href="#<%= category.name.parameterize %>">
               <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-              <%= link_to category.name, products_path(category: category.id) %>
+              <%= link_to category.name, products_path(params.merge({category: category.id})) %>
             </a>
           </h4>
         </div>
@@ -15,7 +15,7 @@
           <div class="panel-body">
             <ul>
               <% category.children.each do |child_category| %>
-                <li><%= link_to child_category.name, products_path(category: child_category.id) %></li>
+                <li><%= link_to child_category.name, products_path(params.merge({category: child_category.id})) %></li>
               <% end %>
             </ul>
           </div>
@@ -48,6 +48,7 @@
         </div>
         <%= number_field_tag  :price_min, params[:price_min] || Spree::Price.min, min: Spree::Price.min, max: Spree::Price.max %>
         <%= number_field_tag  :price_max, params[:price_max] || Spree::Price.max, min: Spree::Price.min, max: Spree::Price.max %>
+        <%= hidden_field_tag  :category, params[:category] %>
           <button type="submit" class="center btn btn-default">Submit</button>
         <% if params[:price_min].present? || params[:price_max].present? %>
           <button type="submit" class="center btn btn-default" id="price-reset">Reset</button>
