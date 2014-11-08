@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   include Spree::Core::ControllerHelpers::Auth
   include Spree::Core::ControllerHelpers::Common
   include Spree::Core::ControllerHelpers::Order
+  include Spree::Core::ControllerHelpers::StrongParameters
+  helper Spree::Core::Engine.helpers
 
   layout 'application'
 

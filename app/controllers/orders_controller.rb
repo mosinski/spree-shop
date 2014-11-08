@@ -5,7 +5,9 @@ class OrdersController < ApplicationController
 
   respond_to :html
   
-  before_filter :assign_order_with_lock, only: [ :remove_item_cart, :update_cart ]
+  before_filter :assign_order_with_lock, only: [ :remove_item_cart, :update_cart, :checkout, :update_checkout ]
+
+  helper 'spree/orders'
 
   def cart
     @order = current_order || Spree::Order.new
@@ -40,8 +42,9 @@ class OrdersController < ApplicationController
           if params.has_key?(:checkout)
             @order.next if @order.cart?
             redirect_to checkout_state_path(@order.checkout_steps.first)
+          else
+            redirect_to cart_path
           end
-          redirect_to cart_path
         end
       end
     else
@@ -50,9 +53,41 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+    before_address
+  end
+
+  def update_checkout
+    if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
+      @order.temporary_address = !params[:save_user_address]
+      unless @order.next
+        puts 'TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+        flash[:error] = @order.errors.full_messages.join("\n")
+        redirect_to checkout_state_path(@order.state) and return
+      end
+
+      if @order.completed?
+        puts 'TEST------------------------------------'
+        @current_order = nil
+        flash.notice = Spree.t(:order_processed_successfully)
+        flash['order_completed'] = true
+        redirect_to completion_route
+      else
+        puts 'TEST=============================================='
+        redirect_to checkout_state_path(@order.state)
+      end
+    else
+      render :checkout
+    end
   end
 
   private
+  def before_address
+    # if the user has a default address, a callback takes care of setting
+    # that; but if he doesn't, we need to build an empty one here
+    @order.bill_address ||= Spree::Address.build_default
+    @order.ship_address ||= Spree::Address.build_default if @order.checkout_steps.include?('delivery')
+  end
+  
   def check_authorization
     cookies.permanent.signed[:guest_token] = params[:token] if params[:token]
     order = Spree::Order.find_by_number(params[:id]) || current_order
