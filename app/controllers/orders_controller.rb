@@ -60,19 +60,16 @@ class OrdersController < ApplicationController
     if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
       @order.temporary_address = !params[:save_user_address]
       unless @order.next
-        puts 'TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
         flash[:error] = @order.errors.full_messages.join("\n")
         redirect_to checkout_state_path(@order.state) and return
       end
 
       if @order.completed?
-        puts 'TEST------------------------------------'
         @current_order = nil
         flash.notice = Spree.t(:order_processed_successfully)
         flash['order_completed'] = true
         redirect_to completion_route
       else
-        puts 'TEST=============================================='
         redirect_to checkout_state_path(@order.state)
       end
     else

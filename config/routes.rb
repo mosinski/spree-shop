@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/cart/remove-item/:variant_id', to: 'orders#remove_item_cart', as: :remove_item_cart
   patch '/cart', to: 'orders#update_cart', as: :update_cart
   get '/checkout', to: 'orders#checkout', as: :checkout
+  patch '/checkout/:state', :to => 'orders#update_checkout', :as => :update_checkout
+  get '/checkout/:state', :to => 'orders#checkout', :as => :checkout_state
 
   root to: "pages#home"
   mount Spree::Core::Engine, at: '/'
