@@ -15,7 +15,7 @@
           <div class="panel-body">
             <ul>
               <% category.children.each do |child_category| %>
-                <li><%= link_to child_category.name, products_path(params.merge({category: child_category.id})) %></li>
+                <%= current_category(child_category, params[:category]) %>
               <% end %>
             </ul>
           </div>
