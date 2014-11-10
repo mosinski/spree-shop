@@ -1,35 +1,4 @@
 <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" } do |form| %>
-
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %></h2>
-
-      <ul>
-      <% @order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= form.fields_for :bill_address do |bill_form| %>
-    <legend align="center"><%= Spree.t(:billing_address) %></legend>
-    <%= render :partial => 'form', :locals => { :form => bill_form, :address_type => 'billing', :address => @order.bill_address } %>
-  <% end %>
-
-  <%= form.fields_for :ship_address do |ship_form| %>
-    <legend align="center"><%= Spree.t(:shipping_address) %></legend>
-    <%= check_box_tag 'order[use_billing]', '1', @order.shipping_eq_billing_address? %>
-    <%= label_tag :order_use_billing, Spree.t(:use_billing_address), :id => 'use_billing' %>
-    <%= render :partial => 'form', :locals => { :form => ship_form, :address_type => 'shipping', :address => @order.ship_address } %>
-  <% end %>
-
-  <%= submit_tag Spree.t(:save_and_continue), :class => 'continue button primary' %>
-  <% if try_spree_current_user %>
-    <%= check_box_tag 'save_user_address', '1', try_spree_current_user.respond_to?(:persist_order_address) %>
-    <%= label_tag :save_user_address, Spree.t(:save_my_address) %>
-  <% end %>
-
   <section id="cart_items">
     <div class="container">
       <div class="breadcrumbs">
@@ -40,230 +9,22 @@
       </div>
 
       <div class="step-one">
-        <h2 class="heading">Step1</h2>
-      </div>
-      <div class="checkout-options">
-        <h3>New User</h3>
-        <p>Checkout options</p>
-        <ul class="nav">
-          <li>
-          <label><input type="checkbox"> Register Account</label>
-          </li>
-          <li>
-          <label><input type="checkbox"> Guest Checkout</label>
-          </li>
-          <li>
-          <a href=""><i class="fa fa-times"></i>Cancel</a>
-          </li>
-        </ul>
+        <h2 class="heading">State <%= @order.state %></h2>
       </div>
 
-      <div class="register-req">
-        <p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
-      </div>
+      <% if @order.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@order.errors.count, "error") %></h2>
 
-      <div class="shopper-informations">
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="shopper-info">
-              <p>Shopper Information</p>
-              <form>
-                <input type="text" placeholder="Display Name">
-                <input type="text" placeholder="User Name">
-                <input type="password" placeholder="Password">
-                <input type="password" placeholder="Confirm password">
-              </form>
-              <a class="btn btn-primary" href="">Get Quotes</a>
-              <a class="btn btn-primary" href="">Continue</a>
-            </div>
-          </div>
-          <div class="col-sm-5 clearfix">
-            <div class="bill-to">
-              <p>Bill To</p>
-              <div class="form-one">
-                <form>
-                  <input type="text" placeholder="Company Name">
-                  <input type="text" placeholder="Email*">
-                  <input type="text" placeholder="Title">
-                  <input type="text" placeholder="First Name *">
-                  <input type="text" placeholder="Middle Name">
-                  <input type="text" placeholder="Last Name *">
-                  <input type="text" placeholder="Address 1 *">
-                  <input type="text" placeholder="Address 2">
-                </form>
-              </div>
-              <div class="form-two">
-                <form>
-                  <input type="text" placeholder="Zip / Postal Code *">
-                  <select>
-                    <option>-- Country --</option>
-                    <option>United States</option>
-                    <option>Bangladesh</option>
-                    <option>UK</option>
-                    <option>India</option>
-                    <option>Pakistan</option>
-                    <option>Ucrane</option>
-                    <option>Canada</option>
-                    <option>Dubai</option>
-                  </select>
-                  <select>
-                    <option>-- State / Province / Region --</option>
-                    <option>United States</option>
-                    <option>Bangladesh</option>
-                    <option>UK</option>
-                    <option>India</option>
-                    <option>Pakistan</option>
-                    <option>Ucrane</option>
-                    <option>Canada</option>
-                    <option>Dubai</option>
-                  </select>
-                  <input type="password" placeholder="Confirm password">
-                  <input type="text" placeholder="Phone *">
-                  <input type="text" placeholder="Mobile Phone">
-                  <input type="text" placeholder="Fax">
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="order-message">
-              <p>Shipping Order</p>
-              <textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
-              <label><input type="checkbox"> Shipping to bill address</label>
-            </div>
-          </div>
+          <ul>
+          <% @order.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
         </div>
-      </div>
-      <div class="review-payment">
-        <h2>Review & Payment</h2>
-      </div>
+      <% end %>
 
-      <div class="table-responsive cart_info">
-        <table class="table table-condensed">
-          <thead>
-            <tr class="cart_menu">
-              <td class="image">Item</td>
-              <td class="description"></td>
-              <td class="price">Price</td>
-              <td class="quantity">Quantity</td>
-              <td class="total">Total</td>
-              <td></td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="cart_product">
-                <a href=""><%= image_tag("cart/one.png") %></a>
-              </td>
-              <td class="cart_description">
-                <h4><a href="">Colorblock Scuba</a></h4>
-                <p>Web ID: 1089772</p>
-              </td>
-              <td class="cart_price">
-                <p>$59</p>
-              </td>
-              <td class="cart_quantity">
-                <div class="cart_quantity_button">
-                  <a class="cart_quantity_up" href=""> + </a>
-                  <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                  <a class="cart_quantity_down" href=""> - </a>
-                </div>
-              </td>
-              <td class="cart_total">
-                <p class="cart_total_price">$59</p>
-              </td>
-              <td class="cart_delete">
-                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-              </td>
-            </tr>
-
-            <tr>
-              <td class="cart_product">
-                <a href=""><%= image_tag("cart/two.png") %></a>
-              </td>
-              <td class="cart_description">
-                <h4><a href="">Colorblock Scuba</a></h4>
-                <p>Web ID: 1089772</p>
-              </td>
-              <td class="cart_price">
-                <p>$59</p>
-              </td>
-              <td class="cart_quantity">
-                <div class="cart_quantity_button">
-                  <a class="cart_quantity_up" href=""> + </a>
-                  <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                  <a class="cart_quantity_down" href=""> - </a>
-                </div>
-              </td>
-              <td class="cart_total">
-                <p class="cart_total_price">$59</p>
-              </td>
-              <td class="cart_delete">
-                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <td class="cart_product">
-                <a href=""><%= image_tag("cart/three.png") %></a>
-              </td>
-              <td class="cart_description">
-                <h4><a href="">Colorblock Scuba</a></h4>
-                <p>Web ID: 1089772</p>
-              </td>
-              <td class="cart_price">
-                <p>$59</p>
-              </td>
-              <td class="cart_quantity">
-                <div class="cart_quantity_button">
-                  <a class="cart_quantity_up" href=""> + </a>
-                  <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                  <a class="cart_quantity_down" href=""> - </a>
-                </div>
-              </td>
-              <td class="cart_total">
-                <p class="cart_total_price">$59</p>
-              </td>
-              <td class="cart_delete">
-                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="4">&nbsp;</td>
-              <td colspan="2">
-                <table class="table table-condensed total-result">
-                  <tr>
-                    <td>Cart Sub Total</td>
-                    <td>$59</td>
-                  </tr>
-                  <tr>
-                    <td>Exo Tax</td>
-                    <td>$2</td>
-                  </tr>
-                  <tr class="shipping-cost">
-                    <td>Shipping Cost</td>
-                    <td>Free</td>
-                  </tr>
-                  <tr>
-                    <td>Total</td>
-                    <td><span>$61</span></td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="payment-options">
-        <span>
-          <label><input type="checkbox"> Direct Bank Transfer</label>
-        </span>
-        <span>
-          <label><input type="checkbox"> Check Payment</label>
-        </span>
-        <span>
-          <label><input type="checkbox"> Paypal</label>
-        </span>
-      </div>
+      <%= render @order.state, :form => form %>
     </div>
   </section>
 <% end %>

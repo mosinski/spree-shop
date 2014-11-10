@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   layout 'application'
 
   protect_from_forgery with: :exception
-  helper_method :categories, :brands
+  helper_method :categories, :brands, :cart_items_count
 
   def categories
     if categories = Spree::Taxon.find_by_name("Categories")
@@ -24,5 +24,9 @@ class ApplicationController < ActionController::Base
     else
       return []
     end
+  end
+
+  def cart_items_count
+    current_order && current_order.line_items.count || 0
   end
 end

@@ -69,7 +69,10 @@
               <div class="shop-menu pull-right">
                 <ul class="nav navbar-nav">
                   <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                  <li><%= link_to cart_path do %><i class="fa fa-shopping-cart"></i> Cart<% end %></li>
+                  <li><%= link_to cart_path do %>
+                    <i class="fa fa-shopping-cart"></i> Cart
+                    <span class="badge"><%= cart_items_count %></span>
+                  <% end %></li>
                   <% if current_user %>
                     <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                     <% if current_user.has_spree_role? "admin" %>
