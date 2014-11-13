@@ -154,7 +154,7 @@ class OrdersController < ApplicationController
 
   def load_order_with_lock
     @order = current_order(lock: true)
-    redirect_to spree.cart_path and return unless @order
+    redirect_to cart_path and return unless @order
   end
 
   def ensure_valid_state_lock_version
