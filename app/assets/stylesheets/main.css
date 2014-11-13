@@ -2580,7 +2580,7 @@ form#searchform button {
 }
 
 #nav {
-  z-index: 9999;
+  z-index: -9999;
   opacity: 0;
   position: absolute;
   -webkit-transition: oacity 0s;
@@ -2610,6 +2610,7 @@ form#searchform button {
 }
 
 #nav.affix {
+  z-index: 9999;
   transition:opacity 0.3s linear;
   opacity: 1;
   position: fixed;
