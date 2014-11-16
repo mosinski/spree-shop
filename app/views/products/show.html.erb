@@ -1,21 +1,20 @@
 <section>
   <div class="container">
     <div class="row">
-      <div class="col-sm-3">
-        <%= render "shared/sidebar.html.erb" %>
-      </div>
-      <div class="col-sm-9 padding-right">
+      <div class="col-sm-12 padding-right">
         <div id="bc1" class="btn-group btn-breadcrumb">
           <a href="/" class="btn btn-default"><i class="fa fa-home"></i></a>
           <div class="btn btn-default">...</div>
           <% @product.taxons.each do |taxon| %>
-            <a href="#" class="btn btn-default"><div><%= taxon.name %></div></a>
+            <%= link_to taxon.name, products_path(params.merge({category: taxon.id})), class: 'btn btn-default' %>
           <% end %>
         </div>
         <div class="product-details">
-          <div class="col-sm-5">
+          <div class="col-sm-4">
             <div class="view-product">
-              <%= image_tag @product.images[0].attachment.url(:product) %>
+              <%= link_to(@product.images[0].attachment.url(:product), class: 'jqzoom', rel: 'gal1', title: @product.name) do %>
+                <%= image_tag @product.images[0].attachment.url(:product), class: 'main-image' %>
+              <% end %>
               <h3>ZOOM</h3>
             </div>
             <div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -23,7 +22,9 @@
                 <% @product.images.each_slice(3).with_index do |images, index| %>
                   <div class="item <% if index == 0 %>active<% end %>">
                     <% images.each do |image| %>
-                      <a href=""><%= image_tag image.attachment.url(:small) %></a>
+                      <%= link_to('javascript:void(0);', rel: "{gallery: 'gal1', smallimage: '#{image.attachment.url(:product)}',largeimage: '#{image.attachment.url(:large)}'}") do %>
+                        <%= image_tag image.attachment.url(:small) %>
+                      <% end %>
                     <% end %>
                   </div>
                 <% end %>
@@ -34,7 +35,7 @@
             </div>
           </div>
 
-          <div class="col-sm-7">
+          <div class="col-sm-8">
             <div class="product-information">
               <%= image_tag("product-details/new.jpg", class: "newarrival") %>
               <h2><%= @product.name %></h2>
@@ -84,7 +85,11 @@
 
             <div class="tab-pane fade" id="tag" >
               <div class="col-sm-12">
-                <p><b>BLANK</b></p>
+                <p>
+                  <% @product.meta_keywords.scan(/#\w+/).flatten.each do |keyword| %>
+                    <b><%= keyword %></b>
+                  <% end %>
+                </p>
               </div>
             </div>
 
@@ -118,3 +123,13 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.jqzoom').jqzoom({
+      zoomType: 'standard',
+      lens:true,
+      preloadImages: false,
+      alwaysOn:false
+    });
+  });
+</script>

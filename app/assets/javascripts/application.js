@@ -20,4 +20,5 @@
 //= require main
 //= require gmaps
 //= require contact
+//= require jquery.jqzoom-core
 //= require_tree .
