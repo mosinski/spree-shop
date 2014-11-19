@@ -4,7 +4,6 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background:;
   position: relative;
   font-weight:400px;
 }
@@ -338,10 +337,6 @@ ul.sub-menu {
     transform: translateY(0);
   }
 }
-/*************************
-*******Footer CSS******
-**************************/
-
 #footer {
   background: #F0F0E9;
 }
@@ -481,15 +476,15 @@ ul.sub-menu {
 }
 
 .single-widget h2 i{
-	margin-right:15px;
+  margin-right:15px;
 }
 
 .single-widget ul li a{
-	color: #8C8C88;
-	font-family: 'Roboto', sans-serif;
-	font-size: 14px;
-	font-weight: 300;
-	padding: 5px 0;
+  color: #8C8C88;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 5px 0;
 }
 
 .single-widget ul li a i {
@@ -497,8 +492,8 @@ ul.sub-menu {
 }
 
 .single-widget ul li a:hover{
-	background:none;
-	color:#FE980F;
+  background:none;
+  color:#FE980F;
 }
 
 .searchform input {
@@ -528,7 +523,7 @@ ul.sub-menu {
 
 .searchform  button:hover, 
 .searchform  button:focus{
-	background-color:#FE980F;
+  background-color:#FE980F;
 }
 
 .searchform p {
@@ -557,12 +552,6 @@ ul.sub-menu {
   text-decoration: underline;
 }
 
-
-/*************************
-******* Home ******
-**************************/
-
-
 #slider {
   padding-bottom: 45px;
 }
@@ -572,7 +561,7 @@ ul.sub-menu {
 }
 
 .carousel-indicators li.active {
-	  background: #FE980F;
+  background: #FE980F;
 }
 
 .item {
@@ -597,7 +586,7 @@ ul.sub-menu {
 }
 
 .item h1 span {
-	color:#FE980F;
+  color:#FE980F;
 }
 
 .item h2 {
@@ -610,10 +599,10 @@ ul.sub-menu {
 }
 
 .item  p {
-	color:#363432;
-	font-size:16px;
-	font-weight:300;
-	font-family: 'Roboto', sans-serif;
+  color:#363432;
+  font-size:16px;
+  font-weight:300;
+  font-family: 'Roboto', sans-serif;
 }
 
 .get {
@@ -626,7 +615,6 @@ ul.sub-menu {
   font-weight: 300;
   margin-top: 23px;
 }
-
 
 .item button:hover {
   background: #FE980F;
@@ -653,6 +641,7 @@ ul.sub-menu {
   padding-bottom: 20px;
   padding-top: 15px;
 }
+
 .left-sidebar h2, .brands_products h2 {
   color: #FE980F;
   font-family: 'Roboto', sans-serif;
@@ -841,15 +830,13 @@ h2.title:before{
   margin-left: -5px;
 }
 
-
 .padding-right {
   padding-right: 0;
 }
 
 .features_items{
-	overflow:hidden;
+  overflow:hidden;
 }
-
 
 h2.title {
   color: #FE980F;
@@ -863,9 +850,9 @@ h2.title {
 }
 
 .product-image-wrapper{
-	border:1px solid #F7F7F5;
-	overflow: hidden;
-	margin-bottom:30px;
+  border:1px solid #F7F7F5;
+  overflow: hidden;
+  margin-bottom:30px;
 }
 
 .single-products {
@@ -879,18 +866,17 @@ h2.title {
 }
 
 .productinfo h2{
-	color: #FE980F;
-	font-family: 'Roboto', sans-serif;
-	font-size: 24px;
-	font-weight: 700;
+  color: #FE980F;
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
 }
 .product-overlay h2{
-	color: #fff;
-	font-family: 'Roboto', sans-serif;
-	font-size: 24px;
-	font-weight: 700;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
 }
-
 
 .productinfo p{
   font-family: 'Roboto', sans-serif;
@@ -916,14 +902,13 @@ h2.title {
   transition: height 500ms ease 0s;
   width: 100%;
   display: block;
-  opacity:;
+  opacity:0.9;
 }
 
 .single-products:hover .product-overlay {
   display:block;
   height:100%;
 }
-
 
 .product-overlay .overlay-content {
   bottom: 0;

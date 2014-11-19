@@ -1,20 +1,21 @@
 <div class="left-sidebar">
   <h2>Category</h2>
   <div class="panel-group category-products" id="accordian">
-    <% (@category || categories).each do |category| %>
+    <% categories(@category).each do |category| %>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordian" href="#<%= category.name.parameterize %>">
+            <a data-toggle="collapse" data-parent="#accordian" href="#<%= category[:name].parameterize %>">
               <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-              <%= link_to category.name, products_path(params.merge({category: category.id})) %>
+              <%= go_up(@category) %>
+              <%= link_to category[:name], products_path(params.merge({category: category[:id]})) %>
             </a>
           </h4>
         </div>
-        <div id="<%= category.name.parameterize %>" class="panel-collapse collapse">
+        <div id="<%= category[:name].parameterize %>" class="panel-collapse collapse">
           <div class="panel-body">
             <ul>
-              <% category.children.each do |child_category| %>
+              <% category[:children].each do |child_category| %>
                 <%= current_category(child_category, params[:category]) %>
               <% end %>
             </ul>
@@ -61,3 +62,11 @@
     <%= image_tag("home/shipping.jpg") %>
   </div>
 </div>
+
+<% if params[:category] %>
+  <script>
+    $(document).ready(function(){
+      $(".panel-collapse").collapse('show')
+    });
+  </script>
+<% end %>

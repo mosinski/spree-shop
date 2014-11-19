@@ -16,7 +16,7 @@
                       <div class="productinfo text-center">
                         <%= image_tag product.images[0].attachment.url(:product) %>
                         <h2><%= product.display_price %></h2>
-                        <p><%= product.name %></p>
+                        <p><%= product.name.titleize %></p>
                         <%= link_to add_item_cart_path(product.master.id), class: 'btn btn-default add-to-cart' do %>
                           <i class="fa fa-shopping-cart"></i>Add to cart
                         <% end %>
@@ -24,7 +24,7 @@
                       <div class="product-overlay">
                         <div class="overlay-content">
                           <h2><%= product.display_price %></h2>
-                          <p><%= link_to product.name, product %></p>
+                          <p><%= link_to product.name.titleize, product %></p>
                           <%= link_to add_item_cart_path(product.master.id), class: 'btn btn-default add-to-cart' do %>
                             <i class="fa fa-shopping-cart"></i>Add to cart
                           <% end %>
