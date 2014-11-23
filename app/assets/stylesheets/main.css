@@ -2564,12 +2564,29 @@ form#searchform button {
   float: left;
 }
 
+#nav button {
+  border-radius: 0;
+}
+
 #nav .input-group {
   border: 1px solid #FE980F;
+  margin-top: -8px;
+}
+#nav .navbar-text {
+  margin-top: 24px;
+  margin-right: 0;
 }
 
 #nav input {
   background: none repeat scroll 0% 0% white;
+  font-size: 18px;
+}
+
+#nav .badge {
+  position: absolute;
+  margin-left: -12px;
+  margin-top: 20px;
+  font-size: 16px;
 }
 
 #nav.affix {

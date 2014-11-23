@@ -142,7 +142,7 @@
         <div class="container">
           <div class="row">
             <div class="navbar-header col-xs-12">
-              <a class="navbar-brand col-sm-2 hidden-xs" href="#">
+              <a class="navbar-brand col-sm-2 hidden-xs" href="/">
                 <%= image_tag("home/logo.png") %>
               </a>
               <span class="navbar-text col-sm-9">
@@ -160,6 +160,11 @@
                   <% end %>
                 </div>
               </span>
+              <span class="col-sm-1 hidden-xs">
+              <%= link_to cart_path do %>
+                <i class="fa fa-shopping-cart fa-4x"></i>
+                <span class="badge progress-bar-warning"><%= cart_items_count %></span>
+              <% end %>
             </div>
           </div>
         </div>
