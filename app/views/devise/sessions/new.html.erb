@@ -12,8 +12,8 @@
 
             <% if devise_mapping.rememberable? -%>
               <span>
-                <%= f.check_box :remember_me, class: 'checkbox' %>
-                Keep me signed in
+                <%= f.check_box :remember_me, title: 'Keep me signed in', class: 'checkbox' %>
+                <%= f.label :remember_me, "Keep me signed in" %>
               </span>
             <% end -%>
 
